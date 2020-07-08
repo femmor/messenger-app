@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css'
 
 import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
@@ -8,10 +8,22 @@ import Message from "./components/Message"
 
 function App() {
 
+  // useState
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState("")
 
+  // useEffect
+  useEffect(() => {
+    // run code here
+    // if condition is empty, it only runs once when the component loads
+    // runs everytime if there is a condition
+
+    setUsername(prompt("Please enter your name"))
+
+  }, [])  // condition
+
+  // Send message method
   const sendMessage = (e) => {
     e.preventDefault()
     // Store messages
@@ -22,6 +34,7 @@ function App() {
   return (
     <div className="App">
       <h1>Messenger App</h1>
+      {username ? `Welcome ${username}` : null}
       <form>
         {/* Input Field */}
         <FormControl>
@@ -35,7 +48,7 @@ function App() {
       {/* Messages */}
       <div>
         {messages.map(message => (
-          <Message text={message} key={message}/>
+          <Message text={message} key={message} username={username}/>
         ))}
       </div>
      </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Message = ({ text }) => {
+const Message = ({ text, username }) => {
     return (
         <>
             <h3>
-                {text}
+                {username}: {text}
             </h3>
         </>
     );
