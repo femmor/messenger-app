@@ -4,7 +4,7 @@ import './App.css'
 import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
 
 // Components
-import Message from "./components/Message"
+import Message from "./components/Message/Message"
 
 function App() {
 
@@ -18,7 +18,6 @@ function App() {
     // run code here
     // if condition is empty, it only runs once when the component loads
     // runs everytime if there is a condition
-
     setUsername(prompt("Please enter your name"))
 
   }, [])  // condition
@@ -27,7 +26,7 @@ function App() {
   const sendMessage = (e) => {
     e.preventDefault()
     // Store messages
-    setMessages([...messages, input])
+    setMessages([...messages, {username: username, text: input}])
     setInput("")
   }
 
@@ -48,7 +47,7 @@ function App() {
       {/* Messages */}
       <div>
         {messages.map(message => (
-          <Message text={message} key={message} username={username}/>
+          <Message key={message.text} message={message} username={username}/>
         ))}
       </div>
      </div>
